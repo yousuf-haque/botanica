@@ -9,3 +9,5 @@ class SageToken:
 def number_token(value) -> SageToken:
         return SageToken('NUMBER', value)
 
+def plus_token() -> SageToken:
+        return SageToken('PLUS', '+')

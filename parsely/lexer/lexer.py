@@ -1,5 +1,5 @@
 from typing import List
-from parsely.lexer.sage_token import SageToken, number_token
+from parsely.lexer.sage_token import SageToken, number_token, plus_token
 
 
 class Lexer:
@@ -18,6 +18,9 @@ class Lexer:
         while self.current_char:
             if self.current_char.isdigit():
                 tokens.append(self._number())
+            elif self.current_char == '+':
+                tokens.append(plus_token())
+                self._advance()
         return tokens
 
     def _number(self) -> SageToken:
