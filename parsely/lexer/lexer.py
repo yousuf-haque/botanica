@@ -16,12 +16,18 @@ class Lexer:
         tokens = []
 
         while self.current_char:
-            if self.current_char.isdigit():
+            if self.current_char.isspace():
+                self._skip_whitespace()
+            elif self.current_char.isdigit():
                 tokens.append(self._number())
             elif self.current_char == '+':
                 tokens.append(plus_token())
                 self._advance()
         return tokens
+
+    def _skip_whitespace(self):
+        while self.current_char.isspace():
+            self._advance()
 
     def _number(self) -> SageToken:
         value = int(self.current_char)
